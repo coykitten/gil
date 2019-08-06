@@ -39,4 +39,16 @@ client.on('message', msg => {
     }
 });
 
+client.on('message', async msg => {
+
+  if (/^!compliment/i.test(msg.content)) {
+
+    const fetch = require('node-fetch');
+    let	response = await fetch('https://complimentr.com/api');
+    let data = await response.json();
+
+    await msg.channel.send(data.compliment);
+  }
+});
+
 client.login(process.env.BOT_TOKEN);
