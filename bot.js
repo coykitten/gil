@@ -39,7 +39,7 @@ client.on('message', msg => {
     }
 });
 
-client.on('message', async msg => {
+client.on('message', async (msg) => {
 
   if (/^!compliment/i.test(msg.content)) {
 
