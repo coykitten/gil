@@ -71,4 +71,27 @@ client.on('message', async (msg) => {
   }
 });
 
+client.on('message', async (msg) => {
+  if (/^!fullwidth/i.test(msg.content)) {
+      // removes command
+      let tokens = msg.content.split(' ')
+      tokens.shift();
+      let str = tokens.join(' ');
+
+      let output = ""
+      for (let i = 0; i < str.length; i++) {
+          let character = str.charCodeAt(i);
+	  if (character == 32) {
+              output = output + String.fromCharCode(0x3000);
+          } else if (character > 0x20  && character < 0x7F) {
+              output = output + String.fromCharCode(0xFF00 - 0x20 + character);
+	  } else {
+              output = output + String.fromCharCode(character);
+      	  }
+	  
+      }
+
+      await msg.channel.send(output);
+  }
+});
 client.login(process.env.BOT_TOKEN);
