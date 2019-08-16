@@ -72,7 +72,7 @@ client.on('message', async (msg) => {
 });
 
 client.on('message', async (msg) => {
-  if (/^!fullwidth/i.test(msg.content)) {
+  if (/^!(fullwidth|fw)/i.test(msg.content)) {
       // removes command
       let tokens = msg.content.split(' ')
       tokens.shift();
